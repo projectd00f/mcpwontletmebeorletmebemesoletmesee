@@ -86,13 +86,13 @@ export const setupMCPServer = (): McpServer => {
 
   server.resource(
     "wrapship-boilerplate-documentation",
-    "https://wrapship.pro",
+    "https://raw.githubusercontent.com/projectd00f/wrapship-mcp-docs/main/public/docs.md",
     { mimeType: "text/plain" },
     async (): Promise<ReadResourceResult> => {
       return {
         contents: [
           {
-            uri: "https://wrapship.pro",
+            uri: "https://raw.githubusercontent.com/projectd00f/wrapship-mcp-docs/main/public/docs.md",
             text: `# WrapShip Documentation
 
 WrapShip - Complete Project Documentation
