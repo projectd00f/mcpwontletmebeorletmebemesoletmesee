@@ -85,7 +85,7 @@ export const setupMCPServer = (): McpServer => {
   );
 
   server.resource(
-    "greeting-resource",
+    "wrapship-boilerplate-documentation",
     "https://wrapship.pro",
     { mimeType: "text/plain" },
     async (): Promise<ReadResourceResult> => {
