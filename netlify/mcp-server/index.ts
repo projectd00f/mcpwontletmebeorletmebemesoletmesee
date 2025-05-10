@@ -6,9 +6,7 @@ import {
   ReadResourceResult,
 } from "@modelcontextprotocol/sdk/types.js";
 
-
 export const setupMCPServer = (): McpServer => {
-
   const server = new McpServer(
     {
       name: "stateless-server",
@@ -17,9 +15,6 @@ export const setupMCPServer = (): McpServer => {
     { capabilities: { logging: {} } }
   );
 
-  // Register a prompt template that allows the server to
-  // provide the context structure and (optionally) the variables
-  // that should be placed inside of the prompt for client to fill in.
   server.prompt(
     "greeting-template",
     "A simple greeting prompt template",
@@ -41,8 +36,6 @@ export const setupMCPServer = (): McpServer => {
     }
   );
 
-  // Register a tool specifically for testing the ability
-  // to resume notification streams to the client
   server.tool(
     "start-notification-stream",
     "Starts sending periodic notifications for testing resumability",
@@ -77,7 +70,6 @@ export const setupMCPServer = (): McpServer => {
         } catch (error) {
           console.error("Error sending notification:", error);
         }
-        // Wait for the specified interval
         await sleep(interval);
       }
 
@@ -92,8 +84,6 @@ export const setupMCPServer = (): McpServer => {
     }
   );
 
-  // Create a resource that can be fetched by the client through
-  // this MCP server.
   server.resource(
     "greeting-resource",
     "https://wrapship.pro",
@@ -103,7 +93,17 @@ export const setupMCPServer = (): McpServer => {
         contents: [
           {
             uri: "https://wrapship.pro",
-            text: "# WrapShip Documentation
+            text: `# WrapShip Documentation
+
+WrapShip - Complete Project Documentation
+
+## Project Overview
+
+WrapShip is a React Native mobile application built with Expo SDK 50 that allows users to transform their photos into cartoon-themed images using AI. The app leverages the Replicate API via Supabase edge functions for image transformation and provides a gallery for users to view their transformed images.
+
+...
+
+# WrapShip Documentation
 
 WrapShip - Complete Project Documentation
 
@@ -761,11 +761,18 @@ export const STYLES = [
 UI images should be stored in ../../assets/styles/ in .jpg format.
 
 
-",
+
+...
+
+## Contact
+
+For support, contact: team@yourapp.com
+`,
           },
         ],
       };
     }
   );
+
   return server;
 };
